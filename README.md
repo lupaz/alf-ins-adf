@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# alf-ins-adf
+Aplicación generada con ADF que modela un proceso genérico de recepción y revisión de documentos. 
+
 # ADF/APS Application with Angular CLI
 
 Minimal ready-to-use Angular CLI project template pre-configured with ADF 2.0.0 components.
@@ -94,3 +98,4 @@ Navigate to "http://localhost" to access the running application.
 <p class="tip">
 (For more information about docker see also)[docker.md]
 </p>
+
