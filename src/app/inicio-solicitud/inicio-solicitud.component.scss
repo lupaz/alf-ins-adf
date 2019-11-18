@@ -1,0 +1,44 @@
+ .base-card {
+    margin-left: auto;
+    margin-right: auto;   
+} 
+  
+.header-image-1 {
+    background-image: url('/assets/inicio-ins-icon.png');
+    background-size: cover;
+}
+
+.b-success {
+  font-weight: bold;
+  color: rgb(10, 192, 71);
+}
+
+.b-atention {
+  font-weight: bold;
+  color: rgb(198, 99, 0);
+}
+
+.header-image-2 {
+    background-image: url('/assets/incripciones-icon.png');
+    background-size: cover;
+}
+
+
+//estilo form
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .center-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }

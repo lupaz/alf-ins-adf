@@ -1,0 +1,235 @@
+<br>
+
+<div *ngIf="processId != null && existeId && !solicitudFueIngresada && !finalizoCargaDatos">
+  <mat-card class="base-card">
+    <mat-card-header class="col-md-12 mr-auto ml-auto">
+      <div mat-card-avatar class="header-image-1"></div>
+      <mat-card-title>¡Hola de nuevo!</mat-card-title>
+      <mat-card-subtitle>Gracias por iniciar tu proceso de inscripción.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="col-md-12 mr-auto ml-auto">
+
+      <p style="text-align:justify;">
+        <b>INSTRUCCIONES:</b>
+        <br>
+        A continuacion se te presentan dos seciones para que puedas ingresar tus datos y subir los documentos para
+        realizar tu inscripción,
+        por lo tanto en la sección de datos personales ingresa la información en los campos que se marcan como
+        obligatorios con un (*), de igual forma
+        en la sección de documentos debes cargar los archivos con los formatos permitos(Documentos PDF o imagenes) y ten
+        en cuenta no exceder el
+        tamaño permitido. Sin mas que decir, ¡Manos a la obra!
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <br>
+
+  <mat-card class="base-card">
+    <mat-card-header class="col-md-12 mr-auto ml-auto">
+      <div mat-card-avatar class="header-image-2"></div>
+      <mat-card-title>Solicitud</mat-card-title>
+      <mat-card-subtitle>Ingrese los datos solicitados:
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="col-md-12 mr-auto ml-auto">
+      <!-- Inicio Steper -->
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="datosPersonalesForm">
+          <form [formGroup]="datosPersonalesForm">
+            <ng-template matStepLabel>DATOS PERSONALES</ng-template>
+            <div class="example-container">
+              <!-- ID -->
+              <mat-form-field appearance="standard">
+                <mat-label>Número ID</mat-label>
+                <input matInput type="number" placeholder="201331324" formControlName="id" required>
+              </mat-form-field>
+              <!-- CUI -->
+              <mat-form-field appearance="standard">
+                <mat-label>Número CUI</mat-label>
+                <input matInput type="number" placeholder="2679959971202" formControlName="cui">
+              </mat-form-field>
+              <!-- Primer Nombre -->
+              <mat-form-field appearance="standard">
+                <mat-label>Primer nombre</mat-label>
+                <input matInput type="text" placeholder="Juan" formControlName="primerNombre" required>
+              </mat-form-field>
+              <!-- Sgundo Nombre -->
+              <mat-form-field appearance="standard">
+                <mat-label>Segundo nombre</mat-label>
+                <input matInput type="text" placeholder="Jesus" formControlName="segundoNombre">
+              </mat-form-field>
+              <!-- Primer Apellido -->
+              <mat-form-field appearance="standard">
+                <mat-label>Primer apellido</mat-label>
+                <input matInput type="text" placeholder="Linares" formControlName="primerApellido" required>
+              </mat-form-field>
+              <!-- Sgundo Apellido -->
+              <mat-form-field appearance="standard">
+                <mat-label>Segundo apellido</mat-label>
+                <input matInput type="text" placeholder="Juarez" formControlName="segundoApellido">
+              </mat-form-field>
+              <!-- Sgundo Apellido -->
+              <mat-form-field appearance="standard">
+                <mat-label>Número de teléfono</mat-label>
+                <input matInput type="number" min="8" max="12" placeholder="33017421" formControlName="numTelefono">
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="documentosForm">
+          <form [formGroup]="documentosForm">
+            <ng-template matStepLabel>DOCUMENTOS</ng-template>
+
+            <div class="example-container">
+              <!-- Documento CUI -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field style="display: inline;">
+                      <mat-label>Documento CUI</mat-label>
+                      <input matInput type="text" placeholder="..." formControlName="docCUI" readonly required>
+                      <!-- file -->
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <input #file type="file" [hidden]="true"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      (change)="selectFile($event.target.files[0])">
+                    <button mat-stroked-button color="primary" (click)="file.click()">
+                      Subir Archivo<mat-icon>unarchive</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+              <!-- Documento ID -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field style="display: inline;">
+                      <mat-label>Documento ID</mat-label>
+                      <input matInput type="text" placeholder="..." formControlName="docID" readonly required>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <input #file2 type="file" [hidden]="true"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      (change)="selectFile2($event.target.files[0])">
+                    <button mat-stroked-button color="primary" (click)="file2.click()">
+                      Subir Archivo<mat-icon>unarchive</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+              <!-- Documento constancia -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field style="display: inline;">
+                      <mat-label>Constancia de aprobación</mat-label>
+                      <input matInput type="text" placeholder="..." formControlName="constancia" readonly required>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <input #file3 type="file" [hidden]="true"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      (change)="selectFile3($event.target.files[0])">
+                    <button mat-stroked-button color="primary" (click)="file3.click()">
+                      Subir Archivo<mat-icon>unarchive</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- Fin Documentos  -->
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+              <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- FIN ESTEPER -->
+        <mat-step>
+          <ng-template matStepLabel>FINALIZAR</ng-template>
+          <p>Cuando estes listo, pulsa "enviar datos"</p>
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+            <button mat-raised-button color="warn" (click)="enviarDatos()">Enviar datos</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+      <!-- Fin Steper -->
+    </mat-card-content>
+    <!--     <mat-card-actions align="end">
+            <button mat-raised-button>Enviar Solicitud</button>
+          </mat-card-actions> -->
+  </mat-card>
+</div>
+
+<div *ngIf="finalizoCargaDatos">
+    <mat-card class="base-card">
+        <mat-card-header class="col-md-12 mr-auto ml-auto">
+          <div mat-card-avatar class="header-image-1"></div>
+          <mat-card-title>¡Saludos!</mat-card-title>
+          <mat-card-subtitle>Datos ingresados correctamente
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="col-md-12 mr-auto ml-auto">    
+          <p style="text-align:justify;">
+            <b class="b-success">DATOS ENVIADOS:</b>
+            <br><br>
+            Sus datos han sido enviados para la revisión correspondiente, la cual se realizará en un período de 2 días hábiles.
+            Por favor, al finalizar este período revise la bandeja de su correo para saber si solicitud fue aprobada o rechazada.
+            <br><br>
+            Gracias.
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>
+
+<div *ngIf="processId != null && solicitudFueIngresada">
+    <mat-card class="base-card">
+        <mat-card-header class="col-md-12 mr-auto ml-auto">
+          <div mat-card-avatar class="header-image-1"></div>
+          <mat-card-title>¡Saludos!</mat-card-title>
+          <mat-card-subtitle>¿Tiene dudas con tu proceso de inscripción?
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="col-md-12 mr-auto ml-auto">
+    
+          <p style="text-align:justify;">
+            <b class="b-atention">SOLICITUD EN PROCESO:</b>
+            <br><br>
+            Ya has ingresado los datos de tu solicitud, la cual se encuentra en proceso. 
+            Por favor revisa el correo proporcionado, para saber el estado de tu solicitud.
+            <br><br>
+            Gracias.
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>
+
+<div *ngIf="processId == null || (existeId != null && !existeId)">
+    <mat-card class="base-card">
+        <mat-card-header class="col-md-12 mr-auto ml-auto">
+          <div mat-card-avatar class="header-image-1"></div>
+          <mat-card-title>¡Saludos!</mat-card-title>
+          <mat-card-subtitle>¿Deseas iniciar un proceso de inscripción?
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="col-md-12 mr-auto ml-auto">
+    
+          <p style="text-align:justify;">
+            <b class="b-atention">AVISO:</b>
+            <br><br>
+            Actualmente no tienene una solicitud de inscrpción iniciada. 
+            Para iniciar su proceso de inscripción por favor dirigete al sigueinte link: 
+            <br><br>
+            <a href="http://localhost:4200/inicio-solicitud"> INICIO DE SOLICITUD</a>
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>

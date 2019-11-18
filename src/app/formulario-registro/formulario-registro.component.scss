@@ -1,0 +1,39 @@
+.base-card {
+    margin-left: auto;
+    margin-right: auto;   
+} 
+  
+.header-image-1 {
+    background-image: url('/assets/ingreso_datos.png');
+    background-size: cover;
+}
+
+.header-image-2 {
+    background-image: url('/assets/incripciones-icon.png');
+    background-size: cover;
+}
+
+.b-atention {
+    font-weight: bold;
+    color: rgb(198, 99, 0);
+}
+
+.b-success {
+    font-weight: bold;
+    color: rgb(10, 192, 71);
+}
+  
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.example-container > * {
+    width: 100%;
+}
+
+.example-button-row button {
+  margin-right: 8px;
+}
+
+  
