@@ -31,7 +31,7 @@ import { InicioSolicitudComponent } from './inicio-solicitud/inicio-solicitud.co
 import { ContenedorGeneralComponent } from './contenedor-general/contenedor-general.component';
 import { FormularioRegistroComponent } from './formulario-registro/formulario-registro.component';
 import { FormularioRevisionComponent } from './formulario-revision/formulario-revision.component';
-
+import{ConstanciaComponent} from './constancia/constancia.component';
 export const appRoutes: Routes = [
   { path: 'files/:nodeId/view', component: FileViewComponent, canActivate: [AuthGuardEcm], outlet: 'overlay' },
   { path: 'preview/blob', component: BlobViewComponent, outlet: 'overlay', pathMatch: 'full' },
@@ -98,6 +98,10 @@ export const appRoutes: Routes = [
         path: 'formulario-revision',
         component: FormularioRevisionComponent
       },
+      {
+        path: 'constancia/:idDoc',
+        component: ConstanciaComponent
+      }, 
     ]
   }
 ];

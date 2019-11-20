@@ -37,6 +37,7 @@ import { DocumentosEstudianteComponent } from './documentos-estudiante/documento
 import { ContenedorGeneralComponent } from './contenedor-general/contenedor-general.component';
 import { FormularioRevisionComponent } from './formulario-revision/formulario-revision.component';
 import { DialogComentario } from './formulario-revision/formulario-revision.component';
+import { ConstanciaComponent } from './constancia/constancia.component';
 
 @NgModule({
     imports: [
@@ -74,7 +75,8 @@ import { DialogComentario } from './formulario-revision/formulario-revision.comp
         DocumentosEstudianteComponent,
         ContenedorGeneralComponent,
         FormularioRevisionComponent,
-        DialogComentario
+        DialogComentario,
+        ConstanciaComponent
     ],
     providers: [
         PreviewService,
