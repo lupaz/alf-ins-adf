@@ -83,7 +83,7 @@ export class AlfrescoService {
   iniciarProceso() {
 
     return this.processInstancesApi.startNewProcessInstance({
-      name: "inscripcion", processDefinitionId: "Process_sid-59A6B02B-2AC6-421D-B662-E5B1549EC40C:23:32611"
+      name: "inscripcion", processDefinitionKey: "Process_sid-59A6B02B-2AC6-421D-B662-E5B1549EC40C"
     }).then((res2) => {
       console.log('proceso iniciado -----> ', res2);
       return res2.id;
@@ -105,17 +105,17 @@ export class AlfrescoService {
 
     return this.tasksApi.listTasks(tasksQuery).then((data) => {
       console.log('API called successfully. Returned data: ', data);
-      if(data.data.length>0){
+      if (data.data.length > 0) {
         return {
           id: data.data[0].id,
           nombre: data.data[0].name
         }
-      }else{
+      } else {
         return null;
       }
-      
+
     }, function (error) {
-      console.error('Process instance not found for id ',tasksQuery.processInstanceId);
+      console.error('Process instance not found for id ', tasksQuery.processInstanceId);
       return null;
     });
 
@@ -136,12 +136,17 @@ export class AlfrescoService {
     });
   }
 
-  recuperarTaskForm(taskId) {
-
+  recuperarTaskFormVariables(taskId) {
+    return this.taskFormApi.getTaskFormVariables(taskId).then((data) => {
+      return data; //retorna las variables existentes hasta ese punto de la tarea en un arreglo
+    }, function (error) {
+      console.error(error);
+      return null;
+    });
   }
 
   subirArchivoAlProceso(processInstanceId: string, relatedContent: RelatedContentRepresentation | any) {
-    console.log(' Inicia la subida del documento -->',relatedContent);
+    console.log(' Inicia la subida del documento -->', relatedContent);
     let opts = {
       'isRelatedContent': false,
     };
@@ -166,13 +171,42 @@ export class AlfrescoService {
     return this.apiProcessClient.callApi(
       '/api/enterprise/process-instances/{processInstanceId}/raw-content', 'POST',
       pathParams, queryParams, headerParams, formParams, postBody,
-      contentTypes, accepts, RelatedContentRepresentation).then((data:RelatedContentRepresentation) => {
+      contentTypes, accepts, RelatedContentRepresentation).then((data: RelatedContentRepresentation) => {
         console.log('API Upoad Doc... called successfully. Returned data: ' + data);
         return data.id;
       }, function (error) {
         console.error(error);
         return null;
       });;
+  }
+
+  recuperArchivo(idDoc) {
+    console.log(' Inicia la recuperación del archivo -->', idDoc);
+    let pathParams = {
+      'contentId': idDoc
+    };
+    let queryParams = {
+    };
+    let headerParams = {};
+    let formParams = {};
+    let accepts = ['application/json', '*/*'];
+    let postBody = null;
+    formParams = {
+    };
+    let contentTypes = ['application/json'];
+
+    let responseType = "blob";
+    return this.apiProcessClient.callApi(
+      '/api/enterprise/content/{contentId}/raw', 'GET',
+      pathParams, queryParams, headerParams, formParams, postBody,
+      contentTypes, accepts, undefined, undefined, responseType).
+      then((data) => {
+        return data;
+      }, function (error) {
+        console.log('no se obtuvo nada :( del fichero');
+        console.error(error);
+        return null;
+      });
   }
 
 }

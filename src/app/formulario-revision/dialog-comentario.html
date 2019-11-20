@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Comentario Revisor</h1>
+<div mat-dialog-content>
+    <p>Ingrese el comentario de revisión:</p>
+    <mat-form-field style="width:100%;">
+        <textarea  matInput [(ngModel)]="comentario" cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions> 
+    <button mat-button [mat-dialog-close]="cancelo" cdkFocusInitial>Cancelar</button>
+    <button mat-button [mat-dialog-close]="comentario" cdkFocusInitial>Aceptar</button>
+</div>

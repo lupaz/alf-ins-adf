@@ -1,5 +1,4 @@
 <br>
-
 <div *ngIf="processId != null && existeId && !solicitudFueIngresada && !finalizoCargaDatos">
   <mat-card class="base-card">
     <mat-card-header class="col-md-12 mr-auto ml-auto">
@@ -24,7 +23,8 @@
     </mat-card-content>
   </mat-card>
   <br>
-
+  <mat-progress-bar *ngIf="waitSend" mode="indeterminate">Cargando</mat-progress-bar>
+  <br>
   <mat-card class="base-card">
     <mat-card-header class="col-md-12 mr-auto ml-auto">
       <div mat-card-avatar class="header-image-2"></div>
@@ -97,7 +97,7 @@
                   </td>
                   <td>
                     <input #file type="file" [hidden]="true"
-                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg, application/pdf, .pdf"
                       (change)="selectFile($event.target.files[0])">
                     <button mat-stroked-button color="primary" (click)="file.click()">
                       Subir Archivo<mat-icon>unarchive</mat-icon>
@@ -116,7 +116,7 @@
                   </td>
                   <td>
                     <input #file2 type="file" [hidden]="true"
-                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg, application/pdf, .pdf"
                       (change)="selectFile2($event.target.files[0])">
                     <button mat-stroked-button color="primary" (click)="file2.click()">
                       Subir Archivo<mat-icon>unarchive</mat-icon>
@@ -135,7 +135,7 @@
                   </td>
                   <td>
                     <input #file3 type="file" [hidden]="true"
-                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+                      accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg, application/pdf, .pdf"
                       (change)="selectFile3($event.target.files[0])">
                     <button mat-stroked-button color="primary" (click)="file3.click()">
                       Subir Archivo<mat-icon>unarchive</mat-icon>

@@ -1,205 +1,270 @@
 <br>
-<mat-card class="base-card">
-  <mat-card-header class="col-md-12 mr-auto ml-auto">
-    <div mat-card-avatar class="header-image-1"></div>
-    <mat-card-title>REVISIÓN DE SOLICITUD</mat-card-title>
-    <mat-card-subtitle>
-      Insccripciones 2019
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="col-md-12 mr-auto ml-auto">
+<div *ngIf="processId != null && existeId && !solicitudFueIngresada && !finalizoCargaDatos">
+  <mat-card class="base-card">
+    <mat-card-header class="col-md-12 mr-auto ml-auto">
+      <div mat-card-avatar class="header-image-1"></div>
+      <mat-card-title>REVISIÓN DE SOLICITUD</mat-card-title>
+      <mat-card-subtitle>
+        Insccripciones 2019
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="col-md-12 mr-auto ml-auto">
 
-    <p style="text-align:center;">
-      <b>Numero Solicitud:</b> 545454
-      <br>
-      <b>Solicitante:</b> Luis Paz
-      <br>
-      <b>Numero ID:</b> Luis Paz
+      <p style="text-align:center;">
+        <b>Numero Solicitud:</b> {{numeroSolicitud}}
+        <br>
+        <b>Solicitante:</b> {{nombreSolicitante}}
+        <br>
+        <b>Número ID: </b> {{numeroId}}
 
-    </p>
-  </mat-card-content>
-</mat-card>
-<br>
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <br>
 
-<mat-card class="base-card">
-  <mat-card-header class="col-md-12 mr-auto ml-auto">
-    <div mat-card-avatar class="header-image-2"></div>
-    <mat-card-title>SOLICITUD INS-2019-088080</mat-card-title>
-    <mat-card-subtitle>Datos del solicitante:
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="col-md-12 mr-auto ml-auto">
-    <!-- Inicio Steper -->
-    <mat-vertical-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="datosPersonalesForm">
-        <form [formGroup]="datosPersonalesForm">
-          <ng-template matStepLabel>DATOS PERSONALES</ng-template>
-          <div class="example-container">
-            <!-- ID -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <mat-form-field appearance="standard">
-                    <mat-label>Número ID</mat-label>
-                    <input matInput type="number" placeholder="201331324" formControlName="id">
-                  </mat-form-field>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboId" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <!-- CUI -->
-            <mat-form-field appearance="standard">
-              <mat-label>Número CUI</mat-label>
-              <input matInput type="number" placeholder="2679959971202" formControlName="cui">
-            </mat-form-field>
-            <!-- Primer Nombre -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <mat-form-field appearance="standard">
-                    <mat-label>Primer nombre</mat-label>
-                    <input matInput type="text" placeholder="Juan" formControlName="primerNombre">
-                  </mat-form-field>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboPrimerNombre" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <!-- Sgundo Nombre -->
-            <mat-form-field appearance="standard">
-              <mat-label>Segundo nombre</mat-label>
-              <input matInput type="text" placeholder="Jesus" formControlName="segundoNombre">
-            </mat-form-field>
-            <!-- Primer Apellido -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <mat-form-field appearance="standard">
-                    <mat-label>Primer apellido</mat-label>
-                    <input matInput type="text" placeholder="Linares" formControlName="primerApellido">
-                  </mat-form-field>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboPrimerApellido" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <!-- Sgundo Apellido -->
-            <mat-form-field appearance="standard">
-              <mat-label>Segundo apellido</mat-label>
-              <input matInput type="text" placeholder="Juarez" formControlName="segundoApellido">
-            </mat-form-field>
-            <!-- Número de solicitud -->
-            <mat-form-field appearance="standard">
-              <mat-label>Número de teléfono</mat-label>
-              <input matInput type="number" min="8" max="12" placeholder="33017421" formControlName="numTelefono">
-            </mat-form-field>
-          </div>
-          <div *ngIf="errorRevision != null">
-            <div class="text-center">
-              <span class="text-alert"> <b>Error: </b> <i>{{errorRevision}}</i> </span>
+  <mat-card class="base-card">
+    <mat-card-header class="col-md-12 mr-auto ml-auto">
+      <div mat-card-avatar class="header-image-2"></div>
+      <mat-card-title>SOLICITUD INS-2019-130295</mat-card-title>
+      <mat-card-subtitle>Datos del solicitante:
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="col-md-12 mr-auto ml-auto">
+      <!-- Inicio Steper -->
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="datosPersonalesForm">
+          <form [formGroup]="datosPersonalesForm">
+            <ng-template matStepLabel>DATOS PERSONALES</ng-template>
+            <div class="example-container">
+              <!-- ID -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field appearance="standard">
+                      <mat-label>Número ID</mat-label>
+                      <input matInput type="number" placeholder="201331324" formControlName="id" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboId" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <!-- CUI -->
+              <mat-form-field appearance="standard">
+                <mat-label>Número CUI</mat-label>
+                <input matInput type="number" placeholder="2679959971202" formControlName="cui" readonly>
+              </mat-form-field>
+              <!-- Primer Nombre -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field appearance="standard">
+                      <mat-label>Primer nombre</mat-label>
+                      <input matInput type="text" placeholder="Juan" formControlName="primerNombre" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboPrimerNombre" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <!-- Sgundo Nombre -->
+              <mat-form-field appearance="standard">
+                <mat-label>Segundo nombre</mat-label>
+                <input matInput type="text" placeholder="Jesus" formControlName="segundoNombre" readonly>
+              </mat-form-field>
+              <!-- Primer Apellido -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field appearance="standard">
+                      <mat-label>Primer apellido</mat-label>
+                      <input matInput type="text" placeholder="Linares" formControlName="primerApellido" readonly>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboPrimerApellido" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <!-- Sgundo Apellido -->
+              <mat-form-field appearance="standard">
+                <mat-label>Segundo apellido</mat-label>
+                <input matInput type="text" placeholder="Juarez" formControlName="segundoApellido" readonly>
+              </mat-form-field>
+              <!-- Número de solicitud -->
+              <mat-form-field appearance="standard">
+                <mat-label>Número de teléfono</mat-label>
+                <input matInput type="number" min="8" max="12" placeholder="33017421" formControlName="numTelefono"
+                  readonly>
+              </mat-form-field>
             </div>
-          </div>
-          <br>
-          <div>
-            <button mat-raised-button color="primary" (click)="validarCampos()" matStepperNext>Siguiente</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="documentosForm">
-        <form [formGroup]="documentosForm">
-          <ng-template matStepLabel>DOCUMENTOS</ng-template>
-          <div class="example-container">
-            <!-- Documento CUI -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <button mat-stroked-button color="primary" (click)="file.click()">
+            <div *ngIf="errorRevision != null">
+              <div class="text-center">
+                <span class="text-alert"> <b>Error: </b> <i>{{errorRevision}}</i> </span>
+              </div>
+            </div>
+            <br>
+            <div>
+              <button mat-raised-button color="primary" (click)="validarCampos()" matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="documentosForm">
+          <form [formGroup]="documentosForm">
+            <ng-template matStepLabel>DOCUMENTOS</ng-template>
+            <div class="example-container">
+              <!-- Documento CUI -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <button mat-stroked-button color="primary" (click)="verDocCui()">
                       Documento CUI <mat-icon class="material-icons color_other">visibility</mat-icon>
-                  </button>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboDocCui" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <br>
-            <!-- Documento ID -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <button mat-stroked-button color="primary" (click)="file2.click()">
-                    Documento I.D. <mat-icon class="material-icons color_other">visibility</mat-icon>
-                  </button>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboDocId" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <br>
-            <!-- Documento constancia -->
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <button mat-stroked-button color="primary" (click)="file2.click()">
+                    </button>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboDocCui" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <!-- Documento ID -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <button mat-stroked-button color="primary" (click)="verDocId()">
+                      Documento I.D. <mat-icon class="material-icons color_other">visibility</mat-icon>
+                    </button>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboDocId" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <!-- Documento constancia -->
+              <table cellspacing="0">
+                <tr>
+                  <td>
+                    <button mat-stroked-button color="primary" (click)="verDocCon()">
                       Doc constancia <mat-icon class="material-icons color_other">visibility</mat-icon>
-                  </button>
-                </td>
-                <td>
-                  <mat-radio-group aria-label="Select an option" [formControl]="aproboDocCons" required>
-                    <mat-radio-button value="1">Aprobar</mat-radio-button>
-                    <mat-radio-button value="2">Rechazar</mat-radio-button>
-                  </mat-radio-group>
-                </td>
-              </tr>
-            </table>
-            <br>
-          </div>
-          <!-- Fin Documentos  -->
-          <div *ngIf="errorRevisionDoc != null">
+                    </button>
+                  </td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" [formControl]="aproboDocCons" required>
+                      <mat-radio-button value="1">Aprobar</mat-radio-button>
+                      <mat-radio-button value="2">Rechazar</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+              <br>
+            </div>
+            <!-- Fin Documentos  -->
+            <div *ngIf="errorRevisionDoc != null">
               <div class="text-center">
                 <span class="text-alert"> <b>Error: </b> <i>{{errorRevisionDoc}}</i> </span>
               </div>
-          </div>
-          <br>
+            </div>
+            <br>
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+              <button mat-raised-button color="primary" (click)="validarCamposDoc()" matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- FIN ESTEPER -->
+        <mat-step>
+          <ng-template matStepLabel>FINALIZAR</ng-template>
+          <p>Cuando estes listo, pulsa "enviar datos"</p>
           <div class="example-button-row">
             <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
-            <button mat-raised-button color="primary" (click)="validarCamposDoc()" matStepperNext>Siguiente</button>
+            <button mat-raised-button color="warn" (click)="enviarDatos()">Finalizar revisión</button>
           </div>
-        </form>
-      </mat-step>
-      <!-- FIN ESTEPER -->
-      <mat-step>
-        <ng-template matStepLabel>FINALIZAR</ng-template>
-        <p>Cuando estes listo, pulsa "enviar datos"</p>
-        <div class="example-button-row">
-          <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="warn" (click)="enviarDatos()">Enviar datos</button>
-        </div>
-      </mat-step>
-    </mat-vertical-stepper>
-    <!-- Fin Steper -->
-  </mat-card-content>
-  <!--     <mat-card-actions align="end">
-            <button mat-raised-button>Enviar Solicitud</button>
-          </mat-card-actions> -->
-</mat-card>
+        </mat-step>
+      </mat-vertical-stepper>
+      <!-- Fin Steper -->
+    </mat-card-content>
+    <!--     <mat-card-actions align="end">
+              <button mat-raised-button>Enviar Solicitud</button>
+            </mat-card-actions> -->
+  </mat-card>
+</div>
+
+<div *ngIf="finalizoCargaDatos">
+    <mat-card class="base-card">
+        <mat-card-header class="col-md-12 mr-auto ml-auto">
+          <div mat-card-avatar class="header-image-1"></div>
+          <mat-card-title>¡Saludos!</mat-card-title>
+          <mat-card-subtitle>Datos revisados correctamente
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="col-md-12 mr-auto ml-auto">    
+          <p style="text-align:justify;">
+            <b class="b-success">DATOS REVISADOS:</b>
+            <br><br>
+            La solicitud actual ha sido revisada correctamente.
+            <br><br>
+            Gracias.
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>
+
+<div *ngIf="processId != null && solicitudFueIngresada">
+    <mat-card class="base-card">
+        <mat-card-header class="col-md-12 mr-auto ml-auto">
+          <div mat-card-avatar class="header-image-1"></div>
+          <mat-card-title>¡Saludos revisor!</mat-card-title>
+          <mat-card-subtitle>¿Solicitud revisada?
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="col-md-12 mr-auto ml-auto">
+    
+          <p style="text-align:justify;">
+            <b class="b-atention">SOLICITUD EN PROCESO:</b>
+            <br><br>
+            La solicitud actual ya fue revisada.
+            <br><br>
+            Saludos.
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>
+
+<div *ngIf="processId == null || (existeId != null && !existeId)">
+  <mat-card class="base-card">
+    <mat-card-header class="col-md-12 mr-auto ml-auto">
+      <div mat-card-avatar class="header-image-1"></div>
+      <mat-card-title>¡Ups!</mat-card-title>
+      <mat-card-subtitle>Solicitud inexistente
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="col-md-12 mr-auto ml-auto">
+
+      <p style="text-align:justify;">
+        <b class="b-atention">AVISO:</b>
+        <br><br>
+         Para realizar la revisión por favor ingrese al buzón de solicitudes:
+        <br><br>
+        <a href="http://localhost:4200/buzon-solicitudes">BUZÓN DE SOLICITUD</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
