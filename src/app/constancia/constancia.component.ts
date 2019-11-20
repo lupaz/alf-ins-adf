@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlfrescoService } from 'app/services/alfresco.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-constancia',
@@ -12,7 +13,7 @@ export class ConstanciaComponent implements OnInit {
   idDoc: any;
   alfrescoService: AlfrescoService;
   urlDoc:any;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,private sanitizer: DomSanitizer) {
     this.alfrescoService = new AlfrescoService();
   }
 
@@ -31,12 +32,8 @@ export class ConstanciaComponent implements OnInit {
     //4009 es imagen
     let blob = await this.alfrescoService.recuperArchivo(this.idDoc);
     await this.alfrescoService.logout();
-
-    /* var binaryData = [];
-    binaryData.push(data);
-    let blob=new Blob(binaryData); */
     console.log('tipo -->', blob);
-    this.urlDoc = URL.createObjectURL(blob);
+    this.urlDoc = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
   }
 
 }
